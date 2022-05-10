@@ -14,6 +14,28 @@
       })
   })
 
+	function displayPost(post) {
+		return`
+			<div>
+				<ul>
+					<li>
+			<b>User ID: </b>${post.userId}
+</li>
+<li>
+			<b>id : </b>${post.id}
+</li>
+<li>
+			<b>title: </b>${post.title}
+</li>
+<li>
+			<b>body: </b>${post.body}
+</li>
+</ul>
+				<hr/>
+</div>
+`
+	}
+
   cw1.addEventListener("click", function () {
 		answer.innerHTML = "Loading..."
     fetch('https://jsonplaceholder.typicode.com/posts')
@@ -42,9 +64,11 @@
 		})
 	})
   cw2.addEventListener("click", function () {
-    //TODO implement it
-  })
-
+   answer.innerHTML = "Loading..."
+    fetch('https://jsonplaceholder.typicode.com/posts/33')
+      .then(response => response.json())
+			.then(post => answer.innerHTML = displayPost(post))
+	})
   cw3.addEventListener("click", function () {
     //TODO implement it
   })
