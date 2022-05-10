@@ -18,17 +18,28 @@
 		answer.innerHTML = "Loading..."
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
-			.then(function(data){
-				appendData(data);
-			})
-		function appendData(data){
-			answer.innerHTML = "";
-			for (var i = 0; i < data.length; i++ ){
-				var div = document.createElement("div");
-				div.innerHTML = '<strong>UserID: ' + data[i].userId +' </strong> <strong>id: ' + data[i].id + '</strong> <br> <strong>title : </strong>' + data[i].title + '<br> <strong>body: </strong>' + data[i].body + '<br> <br>';
-				answer.appendChild(div);
-			}
-		}
+			.then(array => {
+				answer.innerHTML = "";
+				array.forEach(post => answer.innerHTML +=
+`
+<div>
+	<ul>
+		<li>
+			<b>User ID: </b>${post.userId}
+</li>
+<li>
+			<b>id : </b>${post.id}
+</li>
+<li>
+			<b>title: </b>${post.title}
+</li>
+<li>
+			<b>body: </b>${post.body}
+</li>
+				<hr/>
+`
+			);
+		})
 	})
   cw2.addEventListener("click", function () {
     //TODO implement it
